@@ -77,7 +77,7 @@ export const updatePost = async (req, res, next) => {
     try {
         const post = await Post.findByPk(id);
         if (!post || post.author !== userId) {
-            return res.status(403).json({ error: 'You can only delete your own posts' });
+            return res.status(403).json({ error: 'You can only update your own posts' });
         }
 
         post.title = title;
@@ -85,7 +85,7 @@ export const updatePost = async (req, res, next) => {
         await post.save();
 
 
-        res.json({ message: 'Post updated successfully' })
+        res.json({ message: 'Post updated successfully', post })
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
