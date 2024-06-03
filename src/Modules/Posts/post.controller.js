@@ -52,7 +52,7 @@ export const deletePost = async (req, res, next) => {
         // await post.destroy();
 
         if (post.deleteFlag == true) {
-            return res.json({ error: 'That post it already deleted' })
+            return res.json({ error: 'That post is already deleted' })
         }
 
         // soft delete

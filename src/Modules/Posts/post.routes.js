@@ -7,7 +7,7 @@ router.post('/create', authenticateToken, postController.addPost)
 router.get('/list_all', postController.listPosts)
 router.get('/list/:id', postController.listSpecificPost)
 router.put('/update/:id', authenticateToken, postController.updatePost)
-router.delete('/delete/:id', authenticateToken, postController.deletePost)
+router.put('/delete/:id', authenticateToken, postController.deletePost)
 router.get('/author', postController.getPostWithAuthor);
 router.get('/comments', postController.getPostWithComments)
 
