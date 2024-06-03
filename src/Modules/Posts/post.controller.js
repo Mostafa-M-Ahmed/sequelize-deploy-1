@@ -40,7 +40,7 @@ export const listSpecificPost = async (req, res, next) => {
 
 // ============================ Delete post ===============================
 export const deletePost = async (req, res, next) => {
-    const id = req.params.id;
+    const { id } = req.params;
     const userId = req.user.id;
 
     try {
@@ -52,7 +52,7 @@ export const deletePost = async (req, res, next) => {
         // await post.destroy();
 
         if (post.deleteFlag == true) {
-            return res.json({ error: 'That post it already deleted'})
+            return res.json({ error: 'That post it already deleted' })
         }
 
         // soft delete
@@ -70,7 +70,7 @@ export const deletePost = async (req, res, next) => {
 // ============================ Update post ===============================
 export const updatePost = async (req, res, next) => {
     const { title, content } = req.body;
-    const id  = req.params.id;
+    const { id } = req.params;
     const userId = req.user.id;
 
 
@@ -96,7 +96,7 @@ export const updatePost = async (req, res, next) => {
 // ========================== get post with its author ==============================
 export const getPostWithAuthor = async (req, res, next) => {
     try {
-        const postId = req.query.id;
+        const { postId } = req.query;
         const post = await Post.findOne({
             where: { id: postId },
             include: [
@@ -121,7 +121,7 @@ export const getPostWithAuthor = async (req, res, next) => {
 // ========================= get specific post and its comments ========================
 export const getPostWithComments = async (req, res, next) => {
     try {
-        const postId = req.query.id;
+        const { postId } = req.query;
         const post = await Post.findOne({
             where: { id: postId },
             include: [

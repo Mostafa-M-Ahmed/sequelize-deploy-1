@@ -49,7 +49,7 @@ export const listSpecificComment = async (req, res, next) => {
 
 // ============================ Delete comment ===============================
 export const deleteComment = async (req, res, next) => {
-    const id = req.params.id;
+    const { id } = req.params;
     const userId = req.user.id;
 
     try {

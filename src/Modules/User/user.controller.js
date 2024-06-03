@@ -79,7 +79,7 @@ export const loginUser = async (req, res, next) => {
 // ==================================================================================================================
 // ==================================================================================================================
 export const logoutUser = async (req, res, next) => {
-    const userId = req.user.id;
+    const { userId } = req.user;
 
     const user = await User.findByPk(userId)
     if (!user) {
@@ -100,7 +100,7 @@ export const logoutUser = async (req, res, next) => {
 // ========================== get author with all their posts ==============================
 export const getAuthorPosts = async (req, res, next) => {
     try {
-        const userId = req.query.id;
+        const { userId } = req.query;
         const user = await User.findOne({
             where: { id: userId },
             attributes: ['id', 'username', 'email', 'createdAt', 'updatedAt'],
@@ -127,8 +127,8 @@ export const getAuthorPosts = async (req, res, next) => {
 // ============ get a user with a specific post and post’s comments. ===================
 export const getUserPostAllComments = async (req, res, next) => {
     try {
-        const userId = req.query.userId;
-        const postId = req.query.postId;
+        const { userId } = req.query;
+        const { postId } = req.query;
 
         const user = await User.findByPk(userId, {
             attributes: ['id', 'username', 'email', 'createdAt', 'updatedAt']
